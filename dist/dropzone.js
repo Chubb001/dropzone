@@ -2606,12 +2606,10 @@ var Dropzone = function (_Emitter) {
               fileTotal = void 0,
               fileBytesSent = void 0;
           file.upload.progress = 0;
-          file.upload.total = 0;
           file.upload.bytesSent = 0;
           for (var i = 0; i < file.upload.totalChunkCount; i++) {
             if (file.upload.chunks[i] !== undefined && file.upload.chunks[i].progress !== undefined) {
               file.upload.progress += file.upload.chunks[i].progress;
-              file.upload.total += file.upload.chunks[i].total;
               file.upload.bytesSent += file.upload.chunks[i].bytesSent;
             }
           }
@@ -2698,6 +2696,10 @@ var Dropzone = function (_Emitter) {
           }
 
           var _file5 = _ref28;
+
+          if (_file5.upload.chunked){
+            continue;
+          }
 
           this.emit("uploadprogress", _file5, progress, _file5.upload.bytesSent);
         }
