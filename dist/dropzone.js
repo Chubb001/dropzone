@@ -2331,6 +2331,7 @@ var Dropzone = function (_Emitter) {
 
             // Clear the data from the chunk
             chunk.dataBlock = null;
+            var responseText = chunk.xhr.responseText;
             // Leaving this reference to xhr intact here will cause memory leaks in some browsers
             chunk.xhr = null;
 
@@ -2345,7 +2346,7 @@ var Dropzone = function (_Emitter) {
 
             if (allFinished) {
               _this14.options.chunksUploaded(file, function () {
-                _this14._finished(files, '', null);
+                _this14._finished(files, responseText, null);
               });
             }
           };
